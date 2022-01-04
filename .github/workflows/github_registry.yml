@@ -37,9 +37,10 @@ jobs:
           context: ./
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
+          cache: enabled
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:latest
-          cache: enabled
+          
           cache-from: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKER_HUB_USERNAME }}/simplewhale:buildcache,mode=max
       
